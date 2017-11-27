@@ -1,0 +1,58 @@
+﻿@model IEnumerable<projekt_szkoleniowy.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br /> <br />
+<table class="table table-striped">
+    <tr>
+        <th>
+            Lp.
+        </th>
+        <th>
+            Tytuł
+        </th>
+        <th>
+            Data wydania
+        </th>
+        <th>
+            ISBN
+        </th>
+        <th>
+            Autor
+        </th>
+    </tr>
+
+    @{
+        projekt_szkoleniowy.Models.DB db = new projekt_szkoleniowy.Models.DB();
+    }
+    @if (db.tBooks.Count() > 0)
+    {
+        int count = 0;
+        foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>
+                    @count
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ISBN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.Name)
+                    @Html.DisplayFor(modelItem => item.Author.Surname)
+                </td>
+            </tr>
+        }
+    }
+
+
+</table>

@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteka</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/custom.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "dd.mm.yy"
+            });
+        });
+        var dateFormat = $(".selector").datepicker("option", "dateFormat");
+
+        $(function () {
+            $("#autNamesTags").autocomplete({
+                source: '@Url.Action("GetAutNamesList")'
+            });
+        });
+
+        $(function () {
+            $("#autSurnamesTags").autocomplete({
+                source: '@Url.Action("GetAutSurnamesList")'
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-fixed-top">
+        <div class="navbar-header">
+            <a class="nav navbar-nav">
+                @Html.ActionLink("BIBLIOTEKA", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Listy <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("książek", "Index", "BookList")</li>
+                        <li>@Html.ActionLink("autorów", "Index", "AutList")</li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Edycja <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("książek", "Index", "BookEdit")</li>
+                        <li>@Html.ActionLink("autorów", "Index", "AutEdit")</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Biblioteka</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

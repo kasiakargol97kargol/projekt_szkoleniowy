@@ -1,0 +1,82 @@
+﻿@model IEnumerable<projekt_szkoleniowy.Models.Book>
+
+@{
+    ViewBag.Title = "BookEdit";
+}
+
+<br />
+<button type="button" class="btn"
+        onclick="location.href='@Url.Action("BookEdit", "BookEdit")';
+                            return false;">
+    Stwórz nowy
+</button>
+<br /> <br />
+
+<p>@ViewBag.warning</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            Lp.
+        </th>
+        <th>
+            Tytuł
+        </th>
+        <th>
+            Data wydania
+        </th>
+        <th>
+            ISBN
+        </th>
+        <th>
+            Autor
+        </th>
+        <th></th>
+    </tr>
+    @{
+        projekt_szkoleniowy.Models.DB db = new projekt_szkoleniowy.Models.DB();
+    }
+    @if (db.tBooks.Count() > 0)
+    {
+        int count = 0;
+        foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>
+                    @count
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @{
+                        string cutDate = item.ReleaseDate.Date.ToShortDateString();
+                    }
+                    @Html.DisplayFor(modelItem => cutDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ISBN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.Name)
+                    @Html.DisplayFor(modelItem => item.Author.Surname)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary"
+                            onclick="location.href='@Url.Action("BookEdit", "BookEdit", new { id = item.Id })';
+                            return false;">
+                        Edycja
+                    </button>
+                    |
+                    <button type="button" class="btn btn-default"
+                            onclick="location.href='@Url.Action("BookDel", "BookEdit", new { id = item.Id })';
+                            return false;">
+                        Usuń
+                    </button>
+                </td>
+            </tr>
+                            }
+                        }
+
+
+</table>

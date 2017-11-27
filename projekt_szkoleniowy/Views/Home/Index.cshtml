@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    projekt_szkoleniowy.Models.DB db = new projekt_szkoleniowy.Models.DB();
+    int? amountAuts = db.tAuthors.Count();
+    if (amountAuts == null)
+    {
+        amountAuts = 0;
+    }
+    int? amountBooks = db.tBooks.Count();
+    if (amountBooks == null)
+    {
+        amountBooks = 0;
+    }
+}
+
+<br /> <br />
+<div>
+    <div style="display: block; margin-left: 10%; margin-right: 10%">
+        <img src="~/Images/Biblioteka5.jpg" alt="Biblioteka" style="max-width: 100%; width: auto;">
+    </div>
+    <div>
+        <h2>Obecnie w zbiorze biblioteki znajduje się:</h2>
+        <h3>-@amountAuts autorów</h3>
+        <h3>-@amountBooks książek</h3>
+    </div>
+</div>

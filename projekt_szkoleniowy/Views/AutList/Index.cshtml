@@ -1,0 +1,43 @@
+﻿@model IEnumerable<projekt_szkoleniowy.Models.Author>
+
+@{
+    ViewBag.Title = "AutList";
+}
+
+<br /> <br />
+<table class="table table-striped">
+    <tr>
+        <th>
+            Lp.
+        </th>
+        <th>
+            Imię
+        </th>
+        <th>
+            Nazwisko
+        </th>
+        <th></th>
+    </tr>
+    @{
+        projekt_szkoleniowy.Models.DB db = new projekt_szkoleniowy.Models.DB();
+    }
+    @if (db.tAuthors.Count() > 0)
+    {
+        int count = 0;
+        foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>
+                    @count
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+            </tr>
+        }
+    }
+</table>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<projekt_szkoleniowy.Models.Author>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<button type="button" class="btn"
+        onclick="location.href='@Url.Action("AutEdit", "AutEdit")';
+                            return false;">
+    Stwórz nowy
+</button>
+
+<br /> <br />
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            Lp.
+        </th>
+        <th>
+            Imię
+        </th>
+        <th>
+            Nazwisko
+        </th>
+        <th>
+        </th>
+    </tr>
+
+    @{
+        projekt_szkoleniowy.Models.DB db = new projekt_szkoleniowy.Models.DB();
+    }
+    @if (db.tAuthors.Count() > 0)
+    {
+        int count = 0;
+        foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>
+                    @count
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary"
+                            onclick="location.href='@Url.Action("AutEdit", "AutEdit", new { id = item.Id })';
+                            return false;">
+                        Edycja
+                    </button>
+                    |
+                    <button type="button" class="btn btn-default"
+                            onclick="location.href='@Url.Action("AutDel", "AutEdit", new { id = item.Id })';
+                            return false;">
+                        Usuń
+                    </button>
+                </td>
+            </tr>
+        }
+    }
+</table>

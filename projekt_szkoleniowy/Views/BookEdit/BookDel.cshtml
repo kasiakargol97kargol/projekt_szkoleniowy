@@ -1,0 +1,58 @@
+﻿@model projekt_szkoleniowy.Models.Book
+
+@{
+    ViewBag.Title = "BookDel";
+}
+
+
+<h3>Czy na pewno chcesz usunąć?</h3>
+<div>
+    <br />
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tytuł
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            Data wydania
+        </dt>
+
+        <dd>
+            @{
+                string CutDate = Model.ReleaseDate.Date.ToShortDateString();
+            }
+            @Html.DisplayFor(model => CutDate)
+        </dd>
+
+        <dt>
+            ISBN
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+        <dt>
+            Autor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Wróć do listy", "Index", null, new { @class = "black" })
+        </div>
+    }
+</div>

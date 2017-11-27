@@ -1,0 +1,35 @@
+﻿body {
+}
+
+a {
+    color: white;
+    font-size: medium;
+}
+
+a:hover,
+a:focus {
+    background-color: white;
+    border-bottom-color: #015599;
+}
+
+.icon-bar {
+    background-color: white;
+}
+
+.navbar {
+    background-color: #015599;
+    border: hidden;
+}
+
+.nav > li > a:hover {
+    background-color: white;
+}
+
+td.edit {
+    color: grey; 
+}
+
+a.black{
+    color: black;
+    background-color: white;
+}
